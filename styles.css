@@ -188,3 +188,54 @@ header.header .menu-button {
     visibility: visible !important;
   }
 }
+/* ==================================================
+   MENÚ RESPONSIVO DE VISMO
+================================================== */
+
+/* En computadoras: ocultamos el cuadradito */
+header.header .menu-button {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* En celulares: mostramos el cuadradito */
+@media screen and (max-width: 600px) {
+  header.header .menu-button {
+    display: flex !important;
+    visibility: visible !important;
+    width: 54px;
+    height: 54px;
+    padding: 6px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+  }
+
+  .menu-lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .menu-lines span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    background-color: #ffffff;
+  }
+
+  .menu-label {
+    display: block;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+}
