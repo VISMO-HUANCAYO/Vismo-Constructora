@@ -175,3 +175,16 @@ footer{background:#171b18;color:#aaa;display:flex;align-items:center;justify-con
     letter-spacing: 1px;
   }
 }
+/* OCULTAR EL CUADRADO DEL MENÚ EN COMPUTADORA */
+header.header .menu-button {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* MOSTRARLO SOLO EN CELULAR */
+@media screen and (max-width: 850px) {
+  header.header .menu-button {
+    display: flex !important;
+    visibility: visible !important;
+  }
+}
