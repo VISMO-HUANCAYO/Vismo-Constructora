@@ -35,7 +35,17 @@ h1,h2{font-family:Georgia,serif;font-weight:400;letter-spacing:-.035em}h1{font-s
 .contact{background:var(--amber);text-align:center;color:#fff;padding-top:120px;padding-bottom:80px}.contact .eyebrow{justify-content:center;color:#fff}.contact .eyebrow span{background:#fff}.contact h2{font-size:clamp(48px,6.5vw,90px);line-height:1;margin:25px auto}.contact h2 em{color:var(--ink)}.contact>p:not(.eyebrow){max-width:580px;margin:0 auto 35px;line-height:1.7}.light{background:#fff;color:var(--ink)}.outline{border:1px solid #ffffffb3}.contact-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}.contact-info{display:flex;justify-content:space-between;margin-top:90px;padding-top:25px;border-top:1px solid #ffffff59;font-size:15px;text-transform:uppercase;letter-spacing:.16em}
 footer{background:#171b18;color:#aaa;display:flex;align-items:center;justify-content:space-between;padding:30px 5vw;font-size:15px;text-transform:uppercase;letter-spacing:.12em}footer .brand img{width:165px;height:54px}
 @media(max-width:850px){
-  .header{padding:14px 22px;flex-wrap:wrap}.header nav{display:none;width:100%;flex-direction:column;gap:0;padding-top:12px}.header nav.open{display:flex}.header nav a{padding:13px 0;border-top:1px solid #ffffff25}.menu-button{display:block}.head-cta{font-size:0;padding:12px}.brand img{width:145px;height:50px}
+  .header{padding:14px 22px;flex-wrap:wrap}.header nav{display:none;width:100%;flex-direction:column;gap:0;padding-top:12px}.header nav.open{display:flex}.header nav a{padding:13px 0;border-top:1px solid #ffffff25}.menu-button{display:block}.head-cta {
+  font-size: 8px;
+  padding: 10px 8px;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.head-cta svg {
+  width: 13px;
+  height: 13px;
+}.brand img{width:145px;height:50px}
   .hero-copy{padding-left:25px;padding-right:25px}.actions{align-items:flex-start;flex-direction:column}.hero aside{display:none}
   .two,.heading,.process .two,.gallery-heading{grid-template-columns:1fr;gap:40px}.values{grid-template-columns:1fr}.values article{padding:25px 0}
   .service-list article{grid-template-columns:35px 1fr 40px;gap:15px}.service-list article>p{grid-column:2/4}
