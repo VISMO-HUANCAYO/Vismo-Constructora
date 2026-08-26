@@ -11,7 +11,33 @@ svg{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .header nav{display:flex;gap:36px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .head-cta,.button{display:inline-flex;align-items:center;gap:18px;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
 .head-cta{border:1px solid #ffffff66;padding:14px 18px}
-.menu-button{display:none;background:none;border:1px solid #ffffff66;color:#fff;font-size:20px;padding:8px 12px}
+.menu-button {
+  width: 48px;
+  height: 48px;
+  padding: 5px;
+  color: white;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.menu-icon {
+  font-size: 23px;
+  line-height: 20px;
+}
+
+.menu-text {
+  font-family: Arial, sans-serif;
+  font-size: 7px;
+  letter-spacing: 1px;
+  line-height: 10px;
+}
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;color:#fff;background:#202522 url('imagenes/hero-vismo.png') center/cover no-repeat}
 .shade{position:absolute;inset:0;background:linear-gradient(90deg,#151a17ed 0%,#151a1799 46%,#151a171e 82%),linear-gradient(0deg,#0a0e0c66,transparent 55%)}
 .hero-copy{position:relative;z-index:2;padding:150px 7vw 80px;max-width:900px}
