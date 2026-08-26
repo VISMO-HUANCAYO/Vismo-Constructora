@@ -149,6 +149,7 @@ footer{background:#171b18;color:#aaa;display:flex;align-items:center;justify-con
 .menu-lines {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
 }
 
@@ -165,4 +166,9 @@ footer{background:#171b18;color:#aaa;display:flex;align-items:center;justify-con
   font-size: 7px;
   line-height: 1;
   letter-spacing: 1px;
+}
+@media (max-width: 850px) {
+  .menu-button {
+    display: flex;
+  }
 }
