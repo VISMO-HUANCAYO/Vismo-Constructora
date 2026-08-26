@@ -135,40 +135,43 @@ footer{background:#171b18;color:#aaa;display:flex;align-items:center;justify-con
     margin-top: 8px;
   }
 }
+/* MENÚ HAMBURGUESA: oculto en computadora */
 .menu-button {
-  width: 54px;
-  height: 54px;
-  padding: 7px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+  display: none !important;
 }
 
-.menu-lines {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.menu-lines span {
-  display: block;
-  width: 21px;
-  height: 2px;
-  background-color: #ffffff;
-}
-
-.menu-label {
-  color: #ffffff;
-  font-family: Arial, sans-serif;
-  font-size: 7px;
-  line-height: 1;
-  letter-spacing: 1px;
-}
+/* MENÚ HAMBURGUESA: visible únicamente en celular */
 @media (max-width: 850px) {
   .menu-button {
+    display: flex !important;
+    width: 54px;
+    height: 54px;
+    padding: 6px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .menu-lines {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .menu-lines span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    background-color: #ffffff;
+  }
+
+  .menu-label {
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    line-height: 1;
+    letter-spacing: 1px;
   }
 }
