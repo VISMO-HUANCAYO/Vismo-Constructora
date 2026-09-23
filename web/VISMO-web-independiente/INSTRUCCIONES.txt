@@ -1,0 +1,41 @@
+PÁGINA WEB VISMO — GUÍA RÁPIDA
+
+1. CÓMO ABRIR LA PÁGINA
+   - Abre la carpeta “VISMO-web-independiente” en Visual Studio Code.
+   - Haz doble clic en index.html para verlo en el navegador.
+   - También puedes instalar la extensión “Live Server”, hacer clic derecho
+     en index.html y elegir “Open with Live Server”.
+
+2. ARCHIVOS PRINCIPALES
+   - index.html: textos, enlaces, servicios, proyectos y recomendaciones.
+   - styles.css: colores, tamaños, distribución y diseño responsive.
+   - script.js: menú móvil y comportamiento de los proyectos.
+   - imagenes/: todas las fotografías y logos.
+
+3. CAMBIAR UNA IMAGEN
+   - Coloca la nueva imagen dentro de la carpeta “imagenes”.
+   - Puedes reemplazar la anterior usando exactamente el mismo nombre.
+   - Si usas otro nombre, cámbialo también en index.html.
+   Ejemplo:
+   <img src="imagenes/proyecto-altum.webp" alt="Vivienda Altum">
+
+4. CAMBIAR WHATSAPP
+   Busca en index.html:
+   https://wa.me/51946110617
+   Usa 51 seguido del número peruano, sin espacios ni símbolos.
+
+5. CAMBIAR KOALENDAR
+   Busca en index.html:
+   https://koalendar.com/e/reuniones-vismo
+
+6. AÑADIR UNA RECOMENDACIÓN
+   En index.html busca “EDITA O DUPLICA UNA TARJETA”.
+   Copia un bloque completo <article>...</article>, pégalo debajo y cambia
+   el texto, nombre y proyecto.
+
+7. PUBLICAR
+   Sube index.html, styles.css, script.js y la carpeta imagenes juntos.
+   No cambies la estructura de carpetas. No necesita npm ni ChatGPT para funcionar.
+
+IMPORTANTE
+   Conserva siempre una copia de esta carpeta completa antes de editar.
