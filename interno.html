@@ -20,7 +20,7 @@ forgotBtn.onclick=async()=>{
  if(!email){loginError.textContent='Escribe primero tu correo autorizado.';return}
  loginError.textContent='Enviando enlace...';
  try{
-   const redirect=location.origin+location.pathname;
+   const redirect='https://vismo-huancayo.github.io/Vismo-Constructora/interno.html';
    await VismoCloud.sendRecovery(email,redirect);
    loginError.textContent='Te enviamos un correo para crear una nueva contraseña.';
  }catch(e){loginError.textContent='No se pudo enviar el correo de recuperación.'}
@@ -38,7 +38,7 @@ savePasswordBtn.onclick=async()=>{
  recoveryMsg.textContent='Guardando...';
  try{
    await VismoCloud.updatePassword(a);
-   history.replaceState({},document.title,location.pathname);
+   history.replaceState({},document.title,'/Vismo-Constructora/interno.html');
    recoveryMsg.textContent='Contraseña actualizada. Ya puedes ingresar.';
    recoveryBox.style.display='none'; internalPassword.value=''; loginError.textContent='Contraseña actualizada correctamente.';
  }catch(e){recoveryMsg.textContent='No se pudo actualizar. Solicita un nuevo enlace de recuperación.'}
