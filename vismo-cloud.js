@@ -20,7 +20,34 @@ async function login(email,password){
  let s=await request('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email,password})});
  localStorage.setItem(SESSION,JSON.stringify(s));return s
 }
+
 function logout(){localStorage.removeItem(SESSION)}
+async function sendRecovery(email,redirectTo){
+ let r=await fetch(SB_URL+'/auth/v1/recover',{
+   method:'POST',
+   headers:{'apikey':SB_KEY,'Content-Type':'application/json'},
+   body:JSON.stringify({email,redirect_to:redirectTo})
+ });
+ let t=await r.text(); if(!r.ok){let j;try{j=JSON.parse(t)}catch{};throw new Error(j?.msg||j?.message||t)}
+ return true;
+}
+function captureRecoverySession(){
+ let hash=new URLSearchParams(location.hash.replace(/^#/,''));
+ let query=new URLSearchParams(location.search);
+ let access=hash.get('access_token')||query.get('access_token');
+ let refresh=hash.get('refresh_token')||query.get('refresh_token');
+ let type=hash.get('type')||query.get('type');
+ if(access){
+   localStorage.setItem(SESSION,JSON.stringify({access_token:access,refresh_token:refresh||'',token_type:'bearer'}));
+   return {recovery:type==='recovery',access_token:access};
+ }
+ return {recovery:false};
+}
+async function updatePassword(password){
+ let s=getSession(); if(!s?.access_token)throw new Error('Sesión de recuperación no encontrada');
+ return request('/auth/v1/user',{method:'PUT',body:JSON.stringify({password})});
+}
+
 async function pull(){
  let rows=await request('/rest/v1/vismo_data?select=id,tipo,datos&order=actualizado_en.desc');
  let by={};(rows||[]).forEach(r=>by[r.tipo]=r.datos);
@@ -37,6 +64,6 @@ function installStorageSync(){
  const orig=Storage.prototype.setItem;
  Storage.prototype.setItem=function(k,v){orig.call(this,k,v);if(this===localStorage&&MAP[k]&&getSession()?.access_token)setTimeout(()=>pushKey(k).catch(console.error),0)};
 }
-window.VismoCloud={login,logout,pull,pushAll,pushKey,getSession,MAP};
+window.VismoCloud={login,logout,sendRecovery,captureRecoverySession,updatePassword,pull,pushAll,pushKey,getSession,MAP};
 installStorageSync();
 })();
