@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Catálogo de Fachadas | VISMO</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body><a href="../web/index.html" style="position:fixed;left:18px;top:18px;z-index:9999;background:#151719;color:#fff;padding:10px 14px;text-decoration:none;font:12px Arial;letter-spacing:.08em;border:1px solid #b99042">← VOLVER A VISMO</a>
+
+
+<!-- =====================================================
+     PORTADA
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-image"></div>
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <img
+            src="imagenes/logo-vismo.png"
+            alt="VISMO Constructora - Inmobiliaria"
+            class="logo-vismo"
+        >
+
+
+        <p class="eyebrow">
+            CATÁLOGO VISMO
+        </p>
+
+
+        <h1>
+            Imaginemos juntos<br>
+            tu fachada.
+        </h1>
+
+
+        <p class="hero-text">
+
+            Explora nuestras propuestas y selecciona aquellas
+            que conecten con lo que imaginas para tu hogar.
+
+        </p>
+
+
+        <p class="hero-favoritas-info">
+            ♡ Puedes elegir más de una
+        </p>
+
+
+        <a
+            href="#catalogo"
+            class="btn-explorar"
+        >
+            EXPLORAR FACHADAS ↓
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     01 — CATÁLOGO
+===================================================== -->
+
+<section
+    class="catalogo"
+    id="catalogo"
+>
+
+    <div class="section-heading">
+
+        <p class="section-number">
+            01 — CATÁLOGO
+        </p>
+
+
+        <h2>
+            Elige tus favoritas.
+        </h2>
+
+
+        <p>
+
+            No tienes que elegir una sola.
+            Selecciona las propuestas que tengan elementos
+            que te gustaría incorporar en tu futura fachada.
+
+        </p>
+
+    </div>
+
+
+    <!-- Las fachadas se generan desde script.js -->
+
+    <div
+        class="fachadas-grid"
+        id="fachadasGrid"
+    ></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     02 — TU PROYECTO
+===================================================== -->
+
+<section class="proyecto">
+
+    <div class="proyecto-container">
+
+
+        <p class="section-number">
+            02 — TU PROYECTO
+        </p>
+
+
+        <h2>
+            Cuéntanos un poco<br>
+            sobre tu fachada.
+        </h2>
+
+
+        <p class="section-description">
+
+            Estos datos nos ayudarán a comprender mejor
+            las referencias que elegiste y adaptarlas
+            a las características de tu vivienda.
+
+        </p>
+
+
+
+        <div class="proyecto-grid">
+
+
+            <!-- FRENTE -->
+
+            <div class="campo-proyecto">
+
+                <label for="frente">
+                    Frente del terreno
+                </label>
+
+
+                <div class="input-medida">
+
+                    <input
+                        type="number"
+                        id="frente"
+                        min="1"
+                        step="0.01"
+                        placeholder="Ej. 6.50"
+                    >
+
+                    <span>
+                        m
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PISOS -->
+
+            <div class="campo-proyecto">
+
+                <label>
+                    Número de pisos
+                </label>
+
+
+                <div
+                    class="pisos-opciones"
+                    id="pisosOpciones"
+                >
+
+                    <button
+                        type="button"
+                        data-pisos="1"
+                    >
+                        1
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-pisos="2"
+                    >
+                        2
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-pisos="3"
+                    >
+                        3
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-pisos="4"
+                    >
+                        4
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-pisos="5+"
+                    >
+                        5+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PREFERENCIAS -->
+
+        <div class="preferencias-bloque">
+
+
+            <p class="preferencias-pregunta">
+                ¿Qué elementos llamaron más tu atención?
+            </p>
+
+
+            <p class="preferencias-ayuda">
+                Puedes elegir varios.
+            </p>
+
+
+            <div class="chips-preferencias">
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Volumetría"
+                    >
+
+                    <span>
+                        Volumetría
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Colores"
+                    >
+
+                    <span>
+                        Colores
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Materiales"
+                    >
+
+                    <span>
+                        Materiales
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Balcones"
+                    >
+
+                    <span>
+                        Balcones
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Ventanales"
+                    >
+
+                    <span>
+                        Ventanales
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Iluminación"
+                    >
+
+                    <span>
+                        Iluminación
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Jardinería"
+                    >
+
+                    <span>
+                        Jardinería
+                    </span>
+
+                </label>
+
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Otro"
+                    >
+
+                    <span>
+                        Otro
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     03 — INSPIRACIÓN
+===================================================== -->
+
+<section class="referencia">
+
+    <div class="referencia-content">
+
+
+        <p class="section-number">
+            03 — TU INSPIRACIÓN
+        </p>
+
+
+        <h2>
+            ¿No encontraste exactamente<br>
+            lo que imaginas?
+        </h2>
+
+
+        <p>
+
+            Sube una imagen que te inspire.
+            Puede ser una captura de Pinterest o Instagram,
+            una fotografía, un render o cualquier otra referencia.
+
+        </p>
+
+
+
+        <label
+            class="upload-box"
+            for="imagenReferencia"
+        >
+
+
+            <span class="upload-icon">
+                ＋
+            </span>
+
+
+            <span class="upload-title">
+                SUBIR MI INSPIRACIÓN
+            </span>
+
+
+            <span class="upload-subtitle">
+                JPG · PNG · WEBP
+            </span>
+
+
+        </label>
+
+
+
+        <input
+            type="file"
+            id="imagenReferencia"
+            accept="image/png,image/jpeg,image/webp"
+            hidden
+        >
+
+
+        <div id="previewReferencia"></div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     04 — SELECCIÓN Y FORMULARIO
+===================================================== -->
+
+<section
+    class="formulario-section"
+    id="formulario"
+>
+
+
+    <div class="formulario-container">
+
+
+        <p class="section-number">
+            04 — TU SELECCIÓN
+        </p>
+
+
+        <h2>
+            Ya estamos más cerca<br>
+            de imaginarla.
+        </h2>
+
+
+        <p class="form-intro">
+
+            Revisa tus referencias y cuéntanos cualquier
+            detalle adicional que quieras incorporar.
+
+        </p>
+
+
+
+        <!-- FAVORITAS -->
+
+        <div class="resumen-favoritas">
+
+
+            <div class="resumen-titulo">
+
+                <p>
+                    TUS FACHADAS FAVORITAS
+                </p>
+
+
+                <span id="cantidadResumen">
+                    0 seleccionadas
+                </span>
+
+            </div>
+
+
+
+            <div
+                class="favoritas-miniaturas"
+                id="favoritasMiniaturas"
+            >
+
+                <p class="sin-favoritas">
+                    Aún no has seleccionado ninguna fachada.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORMULARIO BASIN
+        ================================================= -->
+
+
+        <form
+            id="formPreferencias"
+            action="https://usebasin.com/f/064ac238b4b1"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+
+            <!-- NOMBRE -->
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre y apellido *
+                </label>
+
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="Nombre del cliente"
+                    placeholder="Escribe tu nombre"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- CELULAR -->
+
+            <div class="campo">
+
+                <label for="celular">
+                    Celular
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="celular"
+                    name="Celular"
+                    placeholder="Ej. 999 999 999"
+                >
+
+            </div>
+
+
+
+            <!-- COMENTARIO -->
+
+            <div class="campo">
+
+                <label for="comentario">
+                    Cuéntanos qué te gusta de estas referencias
+                </label>
+
+
+                <textarea
+                    id="comentario"
+                    name="Comentarios del cliente"
+                    rows="5"
+                    placeholder="Puedes contarnos sobre colores, formas, materiales, iluminación o cualquier detalle que quisieras para tu fachada..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- DATOS QUE COMPLETARÁ JAVASCRIPT -->
+
+            <input
+                type="hidden"
+                id="favoritasInput"
+                name="Fachadas VISMO seleccionadas"
+            >
+
+
+            <input
+                type="hidden"
+                id="pisosInput"
+                name="Número de pisos"
+            >
+
+
+            <input
+                type="hidden"
+                id="preferenciasInput"
+                name="Elementos que le gustan"
+            >
+
+
+            <input
+                type="hidden"
+                id="frenteInput"
+                name="Frente del terreno"
+            >
+
+
+
+            <!-- BOTÓN -->
+
+            <button
+                type="submit"
+                class="btn-enviar"
+            >
+
+                “COMPARTIR MI SELECCIÓN →”.
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     BOTÓN FLOTANTE FAVORITAS
+===================================================== -->
+
+<button
+    class="favoritas-flotante"
+    id="favoritasFlotante"
+    type="button"
+>
+
+    ♡ MIS FAVORITAS
+
+    <span id="contadorFavoritas">
+        0
+    </span>
+
+</button>
+
+
+
+<!-- =====================================================
+     MODAL FACHADA
+===================================================== -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+
+    <!-- CERRAR -->
+
+    <button
+        class="modal-cerrar"
+        id="modalCerrar"
+        type="button"
+        aria-label="Cerrar"
+    >
+        ×
+    </button>
+
+
+
+    <!-- ANTERIOR -->
+
+    <button
+        class="modal-anterior"
+        id="modalAnterior"
+        type="button"
+        aria-label="Fachada anterior"
+    >
+        ‹
+    </button>
+
+
+
+    <!-- CONTENIDO -->
+
+    <div class="modal-contenido">
+
+
+        <div class="modal-imagen-wrap">
+
+
+            <img
+                id="modalImagen"
+                src=""
+                alt="Fachada VISMO"
+            >
+
+
+            <!-- LOGO COMPLETO VISMO -->
+
+            <img
+                src="imagenes/logo-vismo.png"
+                alt="VISMO"
+                class="marca-modal"
+            >
+
+
+        </div>
+
+
+
+        <p id="modalNumero"></p>
+
+
+
+        <button
+            class="modal-favorita"
+            id="modalFavorita"
+            type="button"
+        >
+
+            ♡ AGREGAR A FAVORITAS
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- SIGUIENTE -->
+
+    <button
+        class="modal-siguiente"
+        id="modalSiguiente"
+        type="button"
+        aria-label="Siguiente fachada"
+    >
+        ›
+    </button>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <img
+        src="imagenes/logo-vismo.png"
+        alt="VISMO Constructora - Inmobiliaria"
+        class="footer-logo-img"
+    >
+
+
+    <p>
+        Visión y modernidad para vivir mejor.
+    </p>
+
+
+    <small>
+        Catálogo de fachadas · VISMO
+    </small>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
