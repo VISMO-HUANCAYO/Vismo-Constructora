@@ -23,12 +23,14 @@ async function login(email,password){
 
 function logout(){localStorage.removeItem(SESSION)}
 async function sendRecovery(email,redirectTo){
- let r=await fetch(SB_URL+'/auth/v1/recover',{
+ const url=SB_URL+'/auth/v1/recover?redirect_to='+encodeURIComponent(redirectTo);
+ let r=await fetch(url,{
    method:'POST',
-   headers:{'apikey':SB_KEY,'Content-Type':'application/json'},
-   body:JSON.stringify({email,redirect_to:redirectTo})
+   headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'},
+   body:JSON.stringify({email})
  });
- let t=await r.text(); if(!r.ok){let j;try{j=JSON.parse(t)}catch{};throw new Error(j?.msg||j?.message||t)}
+ let t=await r.text();
+ if(!r.ok){let j;try{j=JSON.parse(t)}catch{};throw new Error(j?.msg||j?.message||j?.error_description||t||('HTTP '+r.status))}
  return true;
 }
 function captureRecoverySession(){
