@@ -4,7 +4,36 @@
 function updateProjectStats(){try{const ps=JSON.parse(localStorage.getItem('vismoProjectsV8Contracts')||'[]');document.getElementById('np').textContent=ps.length;const rs=JSON.parse(localStorage.getItem('vismoRequisitos')||'[]');let n=0;rs.forEach(r=>(r.items||[]).forEach(i=>{if(i.status==='Pendiente'||i.status==='Solicitado'||i.status==='Observado')n++}));document.getElementById('npend').textContent=n}catch(e){}}
 updateProjectStats();
 async function unlock(){loginError.textContent='Ingresando...';try{await VismoCloud.login(internalEmail.value.trim(),internalPassword.value);loginError.textContent='';loginGate.style.display='none';await VismoCloud.pull();sessionStorage.setItem('vismo_cloud_loaded','1');location.reload()}catch(e){loginError.textContent='Correo o contraseña incorrectos.'}}
+
 loginBtn.onclick=unlock;internalPassword.onkeydown=e=>{if(e.key==='Enter')unlock()};
+forgotBtn.onclick=async()=>{
+ const email=internalEmail.value.trim();
+ if(!email){loginError.textContent='Escribe primero tu correo autorizado.';return}
+ loginError.textContent='Enviando enlace...';
+ try{
+   const redirect=location.origin+location.pathname;
+   await VismoCloud.sendRecovery(email,redirect);
+   loginError.textContent='Te enviamos un correo para crear una nueva contraseña.';
+ }catch(e){loginError.textContent='No se pudo enviar el correo de recuperación.'}
+};
+const recoveryState=VismoCloud.captureRecoverySession();
+if(recoveryState.recovery){
+ loginGate.style.display='flex';
+ recoveryBox.style.display='block';
+ loginError.textContent='Crea tu nueva contraseña para VISMO.';
+}
+savePasswordBtn.onclick=async()=>{
+ let a=newPassword.value,b=newPassword2.value;
+ if(a.length<8){recoveryMsg.textContent='Usa una contraseña de al menos 8 caracteres.';return}
+ if(a!==b){recoveryMsg.textContent='Las contraseñas no coinciden.';return}
+ recoveryMsg.textContent='Guardando...';
+ try{
+   await VismoCloud.updatePassword(a);
+   history.replaceState({},document.title,location.pathname);
+   recoveryMsg.textContent='Contraseña actualizada. Ya puedes ingresar.';
+   recoveryBox.style.display='none'; internalPassword.value=''; loginError.textContent='Contraseña actualizada correctamente.';
+ }catch(e){recoveryMsg.textContent='No se pudo actualizar. Solicita un nuevo enlace de recuperación.'}
+};
 (async()=>{if(VismoCloud.getSession()?.access_token){loginGate.style.display='none';if(sessionStorage.getItem('vismo_cloud_loaded')!=='1'){try{await VismoCloud.pull();sessionStorage.setItem('vismo_cloud_loaded','1');location.reload()}catch(e){VismoCloud.logout();loginGate.style.display='flex'}}}})();
 const get=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch{return []}};
 let showArchived=false;
