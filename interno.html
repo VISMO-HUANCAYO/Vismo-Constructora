@@ -27,11 +27,20 @@ forgotBtn.onclick=async()=>{
  'Se alcanzó temporalmente el límite de correos de Supabase. Espera y vuelve a intentar.' :
  'No se pudo enviar el correo: '+(e?.message||'error de autenticación');}
 };
+const recoveryHash=new URLSearchParams(location.hash.replace(/^#/,''));
+const recoveryQuery=new URLSearchParams(location.search);
 const recoveryState=VismoCloud.captureRecoverySession();
-if(recoveryState.recovery){
- loginGate.style.display='flex';
- recoveryBox.style.display='block';
- loginError.textContent='Crea tu nueva contraseña para VISMO.';
+const recoveryMode =
+  recoveryHash.get('type')==='recovery' ||
+  recoveryQuery.get('type')==='recovery' ||
+  recoveryState.recovery ||
+  sessionStorage.getItem('vismo_recovery_mode')==='1';
+
+if(recoveryMode){
+  sessionStorage.setItem('vismo_recovery_mode','1');
+  loginGate.style.display='flex';
+  recoveryBox.style.display='block';
+  loginError.textContent='Crea tu nueva contraseña para VISMO.';
 }
 savePasswordBtn.onclick=async()=>{
  let a=newPassword.value,b=newPassword2.value;
@@ -40,7 +49,7 @@ savePasswordBtn.onclick=async()=>{
  recoveryMsg.textContent='Guardando...';
  try{
    await VismoCloud.updatePassword(a);
-   history.replaceState({},document.title,'/Vismo-Constructora/interno.html');
+   sessionStorage.removeItem('vismo_recovery_mode'); history.replaceState({},document.title,'/Vismo-Constructora/interno.html');
    recoveryMsg.textContent='Contraseña actualizada. Ya puedes ingresar.';
    recoveryBox.style.display='none'; internalPassword.value=''; loginError.textContent='Contraseña actualizada correctamente.';
  }catch(e){recoveryMsg.textContent='No se pudo actualizar. Solicita un nuevo enlace de recuperación.'}
