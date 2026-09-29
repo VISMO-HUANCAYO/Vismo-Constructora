@@ -52,9 +52,30 @@ async function updatePassword(password){
 
 async function pull(){
  let rows=await request('/rest/v1/vismo_data?select=id,tipo,datos&order=actualizado_en.desc');
- let by={};(rows||[]).forEach(r=>by[r.tipo]=r.datos);
+ let by={};(rows||[]).forEach(r=>{if(r.id&&String(r.id).startsWith('global_'))by[r.tipo]=r.datos});
  Object.entries(MAP).forEach(([k,t])=>{if(by[t]!==undefined)localStorage.setItem(k,JSON.stringify(by[t]))});
+ // Entrevistas enviadas desde cualquier dispositivo: una fila por respuesta.
+ let individuales=(rows||[]).filter(r=>r.tipo==='entrevista_cliente').map(r=>({...r.datos,id:r.id,_cloudRow:true}));
+ let base=[];try{base=JSON.parse(localStorage.getItem('vismo_requerimientos')||'[]')}catch{}
+ let m=new Map();[...base,...individuales].forEach(x=>{if(x&&x.id)m.set(x.id,x)});
+ localStorage.setItem('vismo_requerimientos',JSON.stringify([...m.values()].sort((a,b)=>String(b.id).localeCompare(String(a.id)))));
  localStorage.setItem('vismoLastSync',new Date().toISOString());return rows
+}
+async function submitPublicInterview(datos){
+ if(!datos?.id)throw new Error('Respuesta sin identificador');
+ let r=await fetch(SB_URL+'/rest/v1/vismo_data',{
+   method:'POST',
+   headers:{'apikey':SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+   body:JSON.stringify({id:datos.id,tipo:'entrevista_cliente',datos,actualizado_en:new Date().toISOString()})
+ });
+ let t=await r.text(); if(!r.ok){let j;try{j=JSON.parse(t)}catch{};throw new Error(j?.message||j?.hint||t||('HTTP '+r.status))}
+ return true
+}
+async function updatePublicInterview(id,datos){
+ return request('/rest/v1/vismo_data?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:{'Prefer':'return=minimal'},body:JSON.stringify({datos,actualizado_en:new Date().toISOString()})})
+}
+async function deletePublicInterview(id){
+ return request('/rest/v1/vismo_data?id=eq.'+encodeURIComponent(id),{method:'DELETE',headers:{'Prefer':'return=minimal'}})
 }
 async function pushKey(k){
  let tipo=MAP[k];if(!tipo)return;let raw=localStorage.getItem(k);if(raw===null)return;
@@ -66,6 +87,6 @@ function installStorageSync(){
  const orig=Storage.prototype.setItem;
  Storage.prototype.setItem=function(k,v){orig.call(this,k,v);if(this===localStorage&&MAP[k]&&getSession()?.access_token)setTimeout(()=>pushKey(k).catch(console.error),0)};
 }
-window.VismoCloud={login,logout,sendRecovery,captureRecoverySession,updatePassword,pull,pushAll,pushKey,getSession,MAP};
+window.VismoCloud={login,logout,sendRecovery,captureRecoverySession,updatePassword,pull,pushAll,pushKey,submitPublicInterview,updatePublicInterview,deletePublicInterview,getSession,MAP};
 installStorageSync();
 })();
